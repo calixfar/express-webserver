@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        
+        .container {
+            margin: 50 auto;
+        }
+        h1{
+            text-align: center;
+        }
+        .row{
+            margin: 0 auto;
+        }
+
+        .row button {
+            border-bottom: 4px solid black;
+
+        }
+
+        .col {
+            border-right: 4px solid black;
+
+        }
+
+        .cuadrado {
+            width: 50px;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+        }
+        .panel-left {
+            width: 30%;
+            float: left;
+            height: 300px;
+        }
+        .panel-rigth {
+            width: 70%;
+            height: 300px;
+            margin: 30px auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tetris</h1>
+        <div class="panel-left">
+            <h3 class="turn">Turno</h3>
+        </div>
+        <div class="panel-rigth">
+            <div class="row">
+                   <button class="cuadrado col"></button>
+                   <button class="cuadrado col"></button>
+                   <button class="cuadrado"></button>
+            </div>
+            <div class="row">
+                    <button class="cuadrado col"></button>
+                   <button class="cuadrado col"></button>
+                   <button class="cuadrado"></button>
+            </div>
+            <div class="row">
+                    <button class="cuadrado col"></button>
+                   <button class="cuadrado col"></button>
+                   <button class="cuadrado"></button>
+            </div>
+            
+        </div>
+        </div>
+
+</body>
+
+<script>
+
+    var turn = Math.floor((Math.random() * 2) + 1);
+    document.querySelector('h1').textContent = '3 en linea';
+    var turnPlayer = document.querySelector('h3');
+    var button = document.querySelectorAll('button');
+
+    var attemps = 1; 
+    var player1 = new Array();
+    var player2 = new Array();
+    var pattern = [[1,2,3],[1,4,7],[1,5,9]]
+    turnPlayer.textContent = 'Turno del jugador: ' +turn;
+
+    function win(){
+
+    }
+    function addEventClickButton () {
+            for (var i = 0; i < button.length; i++) {
+                button[i].addEventListener('click', (evt) => {
+                        turn % 2 !== 0 ?  evt.target.textContent = 'X'  :  evt.target.textContent = 'O' ;
+                        evt.target.textContent === 'X' ?  turnPlayer.textContent = 'Turno del jugador: 2' :  turnPlayer.textContent = 'Turno del jugador: 1';
+                        turn ++;
+                        attemps++;
+                        if(attemps > 9) Array.from(button).map(b => b.disabled = true)
+                    })
+            }
+        
+        
+    }
+    addEventClickButton();
+    // function clickButton(evt) {
+    //     evt.target.textContent = 'x';
+    // }
+</script>
+</html>
